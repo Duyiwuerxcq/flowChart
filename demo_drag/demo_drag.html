@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/demo.css">
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/jquery-ui-1.9.2.min.js"></script>
+    <script src="js/jsplumb.js"></script>
+    <style>
+        button {
+            padding: 6px 12px;
+            background: #2b85c4;
+            color: #fff;
+            font-size: 14px;
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            border: 1px solid transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="jtk-demo-main">
+
+        <div class="left">
+            <ul class="ul">
+                <li class="window jtk-node" data-id="Window1">1</li>
+                <li class="window jtk-node" data-id="Window2">2</li>
+                <li class="window jtk-node" data-id="Window3">3</li>
+                <li class="window jtk-node" data-id="Window4">4</li>
+            </ul>
+        </div>
+
+        <!-- demo -->
+        <div class="jtk-demo-canvas canvas-wide flowchart-demo jtk-surface jtk-surface-nopan" id="canvas">
+            <!-- <div class="window jtk-node" id="flowchartWindow1"><strong>1</strong><br/><br/></div>
+               <div class="window jtk-node" id="flowchartWindow2"><strong>2</strong><br/><br/></div>
+               <div class="window jtk-node" id="flowchartWindow3"><strong>3</strong><br/><br/></div>
+               <div class="window jtk-node" id="flowchartWindow4"><strong>4</strong><br/><br/></div> -->
+        </div>
+        <!-- /demo -->
+        <button id="button">save</button>
+    </div>
+</body>
+
+</html>
+<script src="js/demo1.js">
+</script>
+<script>
+    var data = JSON.parse(localStorage.getItem("data"))
+    var plu = $("#canvas").flowdesign({
+        folowChartData: data,
+        saveBtn: "button"
+    });
+    //    var plu = new Plugin();
+    //    plu.flowChartSave();
+</script>

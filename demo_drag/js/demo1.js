@@ -121,7 +121,7 @@
 
                     // listen for new connections; initialise them the same way we initialise the connections at startup.
                     instance.bind("connection", function (connInfo, originalEvent) {
-                        connInfo.connection.getOverlay("label").setLabel('<span class="transitonSpan">click</span><a class="del">Delete</a>');
+                        //connInfo.connection.getOverlay("label").setLabel('<span class="transitonSpan">click</span><a class="del">Delete</a>');
                         if (connInfo.sourceId == connInfo.targetId) {
                             alert("不能连接自己！");
                             instance.deleteConnection(connInfo.connection);
@@ -144,8 +144,8 @@
                     //
                     //监听事件
                     //
-                    instance.bind("click",
-                        function (conn, e) {
+                    instance.bind("click",function (conn, e) {
+                        debugger;
                             var target = e.target || e.srcElement;
                             if (target.className == 'del') {
                                 instance.deleteConnection(conn);
@@ -169,6 +169,7 @@
             var connects = [],
                 connectors = instance.getAllConnections();
             $.each(connectors, function (idx, connection) {
+                console.log(connection)
                 connects.push({
                     ConnectionId: connection.id,
                     PageSourceId: connection.sourceId,
@@ -194,11 +195,10 @@
             serliza["element"] = blocks;
             json = JSON.stringify(serliza);
             window.localStorage.setItem("data", json);
-
+            console.log(json);
         },
         flowChartDraw: function () {
             var data = obj.settings.folowChartData;
-            console.log(initNode)
             if (data) {
                 $.each(data.element, function (i, v) {
                     var newNode = $('<div><div>');
@@ -213,9 +213,9 @@
                         target: v.PageTargetId,
                         type: "basic"
                     });
+                    instance.getConnections()[i].getOverlay('label').setLabel(v.ConnectText);
                 });
             }
-
         },
         remove: function () {
             this.element.off("." + pluginName);
